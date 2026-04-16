@@ -52,7 +52,7 @@ export function Sidebar({
           const isActive = item.subItems.some(sub => {
             return pathname === sub.href || pathname.startsWith(`${sub.href}/`);
           });
-          if (isActive && !newOpenGroups[item.label]) {
+          if (isActive && newOpenGroups[item.label] === undefined) {
             newOpenGroups[item.label] = true;
             changed = true;
           }

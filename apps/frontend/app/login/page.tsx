@@ -8,8 +8,8 @@ import { useAuth } from "../providers";
 export default function LoginPage() {
   const router = useRouter();
   const { signIn } = useAuth();
-  const [email, setEmail] = useState("admin@smk.local");
-  const [password, setPassword] = useState("Admin123!");
+  const [email, setEmail] = useState("superadmin@smk.com");
+  const [password, setPassword] = useState("admin123");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -21,7 +21,7 @@ export default function LoginPage() {
     setError(null);
     try {
       await signIn(email, password);
-      router.push("/dashboard");
+      router.push("/dashboards");
     } catch (e2) {
       if (e2 instanceof ApiError) {
         setError(typeof e2.body === "string" ? e2.body : `Login gagal (${e2.status})`);
@@ -91,4 +91,3 @@ export default function LoginPage() {
     </main>
   );
 }
-

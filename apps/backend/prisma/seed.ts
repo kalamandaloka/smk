@@ -41,10 +41,13 @@ async function main() {
     { code: 'PLATFORM_ADMIN', name: 'Platform Admin' },
     { code: 'PRINCIPAL', name: 'Kepala Sekolah' },
     { code: 'ACADEMIC_ADMIN', name: 'Admin Akademik' },
+    { code: 'CHAIRMAN_FOUNDATION', name: 'Ketua Yayasan' },
     { code: 'HEAD_PROGRAM', name: 'Kaprogli' },
     { code: 'TEACHER', name: 'Guru' },
     { code: 'HOMEROOM', name: 'Wali Kelas' },
+    { code: 'STUDENT_AFFAIRS', name: 'Kesiswaan' },
     { code: 'COUNSELOR', name: 'Guru BK' },
+    { code: 'FINANCE', name: 'Keuangan' },
     { code: 'STUDENT', name: 'Siswa' }
   ];
 
@@ -68,8 +71,8 @@ async function main() {
     }
   }
 
-  const adminEmail = 'admin@smk.local';
-  const adminPwd = 'Admin123!';
+  const adminEmail = 'superadmin@smk.com';
+  const adminPwd = 'admin123';
   const password = await bcrypt.hash(adminPwd, 10);
   const adminUser = await prisma.user.upsert({
     where: { email: adminEmail },
@@ -84,15 +87,18 @@ async function main() {
     });
   }
 
-  // Create Dummy Accounts for all other roles
+  // Create test accounts for each role dashboard
   const dummyAccounts = [
-    { email: 'kepsek@smk.local', name: 'Kepala Sekolah', roleCode: 'PRINCIPAL' },
-    { email: 'akademik@smk.local', name: 'Admin Akademik', roleCode: 'ACADEMIC_ADMIN' },
-    { email: 'kaprogli@smk.local', name: 'Kepala Program', roleCode: 'HEAD_PROGRAM' },
-    { email: 'guru@smk.local', name: 'Budi Santoso (Guru)', roleCode: 'TEACHER' },
-    { email: 'walikelas@smk.local', name: 'Siti Aminah (Wali Kelas)', roleCode: 'HOMEROOM' },
-    { email: 'gurubk@smk.local', name: 'Ahmad Yani (Guru BK)', roleCode: 'COUNSELOR' },
-    { email: 'siswa@smk.local', name: 'Andi (Siswa)', roleCode: 'STUDENT' }
+    { email: 'admin@smk.com', name: 'Admin Akademik', roleCode: 'ACADEMIC_ADMIN' },
+    { email: 'ketuayayasan@smk.com', name: 'Ketua Yayasan', roleCode: 'CHAIRMAN_FOUNDATION' },
+    { email: 'kepalasekolah@smk.com', name: 'Kepala Sekolah', roleCode: 'PRINCIPAL' },
+    { email: 'guru@smk.com', name: 'Guru', roleCode: 'TEACHER' },
+    { email: 'walikelas@smk.com', name: 'Wali Kelas', roleCode: 'HOMEROOM' },
+    { email: 'kaprogli@smk.com', name: 'Kepala Program', roleCode: 'HEAD_PROGRAM' },
+    { email: 'kesiswaan@smk.com', name: 'Kesiswaan', roleCode: 'STUDENT_AFFAIRS' },
+    { email: 'bk@smk.com', name: 'Guru BK', roleCode: 'COUNSELOR' },
+    { email: 'keuangan@smk.com', name: 'Keuangan', roleCode: 'FINANCE' },
+    { email: 'siswa@smk.com', name: 'Siswa', roleCode: 'STUDENT' }
   ];
 
   for (const account of dummyAccounts) {
