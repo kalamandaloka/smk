@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "module": "commonjs",
+    "target": "es2018",
+    "outDir": "dist",
+    "strict": true
+  },
+  "include": ["src/**/*"]
+}

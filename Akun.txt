@@ -1,0 +1,11 @@
+- Platform Admin: admin@smk.local
+- Kepala Sekolah: kepsek@smk.local
+- Admin Akademik: akademik@smk.local
+- Kaprogli: kaprogli@smk.local
+- Guru: guru@smk.local
+- Wali Kelas: walikelas@smk.local
+- Guru BK: gurubk@smk.local
+- Siswa: siswa@smk.local
+
+
+Admin123!

@@ -1,0 +1,379 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum LessonType {
+  ARTICLE
+  VIDEO
+  DOCUMENT
+  QUIZ
+  INTERACTIVE_3D
+  AR_ACTIVITY
+  VR_ACTIVITY
+  MR_ACTIVITY
+}
+
+enum PublicationStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  isActive  Boolean  @default(true)
+  schoolId  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userRoles UserRole[]
+  quizAttempts QuizAttempt[]
+  lessonProgress LessonProgress[]
+  school     School? @relation(fields: [schoolId], references: [id])
+  taughtClasses ClassTeacher[]
+  studentClasses ClassStudent[]
+  homeroomForClasses Class[] @relation("HomeroomTeacher")
+  passwordResetTokens PasswordResetToken[]
+  auditLogs AuditLog[]
+  interactiveSessions InteractiveSession[]
+  mediaAssets MediaAsset[]
+}
+
+model Role {
+  id        String     @id @default(cuid())
+  code      String     @unique
+  name      String
+  createdAt DateTime   @default(now())
+  rolePerms RolePerm[]
+  userRoles UserRole[]
+}
+
+model Permission {
+  id        String     @id @default(cuid())
+  code      String     @unique
+  name      String
+  createdAt DateTime   @default(now())
+  rolePerms RolePerm[]
+}
+
+model RolePerm {
+  id           String     @id @default(cuid())
+  roleId       String
+  permissionId String
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+  @@unique([roleId, permissionId])
+}
+
+model UserRole {
+  id        String   @id @default(cuid())
+  userId    String
+  roleId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      Role     @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  @@unique([userId, roleId])
+}
+
+model School {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  programs  Program[]
+  departments Department[]
+  classes   Class[]
+  courses   Course[]
+  users     User[]
+}
+
+model AcademicYear {
+  id        String   @id @default(cuid())
+  label     String   @unique
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  semesters Semester[]
+  classes   Class[]
+}
+
+model Semester {
+  id             String       @id @default(cuid())
+  label          String
+  academicYearId String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  academicYear   AcademicYear @relation(fields: [academicYearId], references: [id], onDelete: Cascade)
+  @@unique([label, academicYearId])
+}
+
+model Program {
+  id        String   @id @default(cuid())
+  name      String
+  schoolId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  school    School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  departments Department[]
+  @@unique([name, schoolId])
+}
+
+model Department {
+  id        String   @id @default(cuid())
+  name      String
+  schoolId  String
+  programId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  school    School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  program   Program? @relation(fields: [programId], references: [id])
+  classes   Class[]
+  courses   Course[]
+  @@unique([name, schoolId])
+}
+
+model Class {
+  id             String        @id @default(cuid())
+  name           String
+  schoolId       String
+  departmentId   String?
+  academicYearId String?
+  homeroomTeacherId String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  school         School        @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  department     Department?   @relation(fields: [departmentId], references: [id])
+  academicYear   AcademicYear? @relation(fields: [academicYearId], references: [id])
+  homeroomTeacher User? @relation("HomeroomTeacher", fields: [homeroomTeacherId], references: [id])
+  teachers       ClassTeacher[]
+  students       ClassStudent[]
+  courseAssignments CourseClass[]
+  @@unique([name, schoolId])
+}
+
+model Course {
+  id          String            @id @default(cuid())
+  title       String
+  slug        String            @unique
+  description String?
+  status      PublicationStatus @default(DRAFT)
+  schoolId    String
+  departmentId String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  school      School            @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  department  Department?       @relation(fields: [departmentId], references: [id])
+  modules     CourseModule[]
+  assignedClasses CourseClass[]
+  @@index([schoolId])
+}
+
+model CourseModule {
+  id        String   @id @default(cuid())
+  courseId  String
+  title     String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessons   Lesson[]
+  @@index([courseId])
+}
+
+model Lesson {
+  id         String    @id @default(cuid())
+  moduleId   String
+  title      String
+  type       LessonType
+  order      Int       @default(0)
+  article    String?
+  videoUrl   String?
+  documentUrl String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  module     CourseModule @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  quiz       Quiz?
+  progress   LessonProgress[]
+  interactiveSessions InteractiveSession[]
+  @@index([moduleId])
+}
+
+model Quiz {
+  id           String        @id @default(cuid())
+  lessonId     String        @unique
+  passingScore Int           @default(0)
+  maxAttempts  Int           @default(0)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  lesson       Lesson        @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  questions    QuizQuestion[]
+  attempts     QuizAttempt[]
+}
+
+model QuizQuestion {
+  id        String       @id @default(cuid())
+  quizId    String
+  prompt    String
+  type      QuestionType @default(MULTIPLE_CHOICE)
+  order     Int          @default(0)
+  createdAt DateTime     @default(now())
+  quiz      Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  options   QuizOption[]
+  answers   QuizAnswer[]
+  @@index([quizId])
+}
+
+model QuizOption {
+  id          String      @id @default(cuid())
+  questionId  String
+  text        String
+  isCorrect   Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  question    QuizQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  answers     QuizAnswer[]
+  @@index([questionId])
+}
+
+model QuizAttempt {
+  id          String      @id @default(cuid())
+  quizId      String
+  studentId   String
+  startedAt   DateTime    @default(now())
+  submittedAt DateTime?
+  score       Int         @default(0)
+  passed      Boolean     @default(false)
+  quiz        Quiz        @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  student     User        @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  answers     QuizAnswer[]
+  @@index([quizId])
+  @@index([studentId])
+}
+
+model QuizAnswer {
+  id         String      @id @default(cuid())
+  attemptId  String
+  questionId String
+  optionId   String
+  createdAt  DateTime    @default(now())
+  attempt    QuizAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question   QuizQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  option     QuizOption  @relation(fields: [optionId], references: [id], onDelete: Cascade)
+  @@unique([attemptId, questionId])
+}
+
+model LessonProgress {
+  id          String   @id @default(cuid())
+  lessonId    String
+  studentId   String
+  completedAt DateTime @default(now())
+  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  student     User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  @@unique([lessonId, studentId])
+  @@index([studentId])
+}
+
+model ClassTeacher {
+  id        String   @id @default(cuid())
+  classId   String
+  teacherId String
+  createdAt DateTime @default(now())
+  class     Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
+  teacher   User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  @@unique([classId, teacherId])
+  @@index([teacherId])
+}
+
+model ClassStudent {
+  id        String   @id @default(cuid())
+  classId   String
+  studentId String
+  createdAt DateTime @default(now())
+  class     Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
+  student   User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  @@unique([classId, studentId])
+  @@index([studentId])
+}
+
+model CourseClass {
+  id        String   @id @default(cuid())
+  courseId  String
+  classId   String
+  createdAt DateTime @default(now())
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  class     Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
+  @@unique([courseId, classId])
+  @@index([classId])
+}
+
+model MediaAsset {
+  id          String   @id @default(cuid())
+  uploaderId  String
+  originalName String
+  mimeType    String
+  size        Int
+  storagePath String
+  createdAt   DateTime @default(now())
+  uploader    User     @relation(fields: [uploaderId], references: [id], onDelete: Cascade)
+  @@index([uploaderId])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  usedAt    DateTime?
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  action     String
+  method     String
+  path       String
+  statusCode Int
+  entityType String?
+  entityId   String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model InteractiveSession {
+  id        String   @id @default(cuid())
+  lessonId  String
+  userId    String
+  launchedAt DateTime @default(now())
+  status    String   @default("STARTED")
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  results   InteractiveResult[]
+  @@index([lessonId])
+  @@index([userId])
+}
+
+model InteractiveResult {
+  id        String   @id @default(cuid())
+  sessionId String
+  data      Json
+  createdAt DateTime @default(now())
+  session   InteractiveSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  @@index([sessionId])
+}
