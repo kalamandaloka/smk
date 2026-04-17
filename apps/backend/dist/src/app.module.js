@@ -28,6 +28,11 @@ const roles_module_1 = require("./modules/roles/roles.module");
 const media_module_1 = require("./modules/media/media.module");
 const reports_module_1 = require("./modules/reports/reports.module");
 const interactive_module_1 = require("./modules/interactive/interactive.module");
+const foundation_module_1 = require("./modules/foundation/foundation.module");
+const principal_module_1 = require("./modules/principal/principal.module");
+const student_module_1 = require("./modules/student/student.module");
+const admin_module_1 = require("./modules/admin/admin.module");
+const superadmin_module_1 = require("./modules/superadmin/superadmin.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -51,6 +56,11 @@ exports.AppModule = AppModule = __decorate([
             media_module_1.MediaModule,
             reports_module_1.ReportsModule,
             interactive_module_1.InteractiveModule,
+            foundation_module_1.FoundationModule,
+            principal_module_1.PrincipalModule,
+            student_module_1.StudentModule,
+            admin_module_1.AdminModule,
+            superadmin_module_1.SuperadminModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService, prisma_service_1.PrismaService],

@@ -19,6 +19,11 @@ import { RolesModule } from './modules/roles/roles.module';
 import { MediaModule } from './modules/media/media.module';
 import { ReportsModule } from './modules/reports/reports.module';
 import { InteractiveModule } from './modules/interactive/interactive.module';
+import { FoundationModule } from './modules/foundation/foundation.module';
+import { PrincipalModule } from './modules/principal/principal.module';
+import { StudentModule } from './modules/student/student.module';
+import { AdminModule } from './modules/admin/admin.module';
+import { SuperadminModule } from './modules/superadmin/superadmin.module';
 
 @Module({
   imports: [
@@ -39,6 +44,11 @@ import { InteractiveModule } from './modules/interactive/interactive.module';
     MediaModule,
     ReportsModule,
     InteractiveModule,
+    FoundationModule,
+    PrincipalModule,
+    StudentModule,
+    AdminModule,
+    SuperadminModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
