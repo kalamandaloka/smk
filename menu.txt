@@ -1,0 +1,121 @@
+2. ADMIN
+Kelompok Menu	Menu
+Beranda	Dashboard Admin, Notifikasi, Kalender Akademik
+Akademik	Tahun Ajaran, Semester, Jurusan, Kelas, Rombel, Mata Pelajaran, Jadwal Pelajaran, Jadwal Ujian, LMS Management
+Penilaian	Ujian & Penilaian, Bank Soal, Rekap Nilai, Monitoring Input Nilai
+Siswa	Data Siswa, Mutasi, Kenaikan Kelas, Data Kelas
+Administrasi	Manajemen User, Data Guru & Staff, Arsip Dokumen, Approval Data, Pengaturan Sekolah
+Keuangan	Monitoring Tagihan, Pembayaran, Tunggakan
+Komunikasi	Pengumuman, Pesan Internal
+Laporan	Laporan Akademik, Laporan Absensi, Laporan Keuangan, Laporan Pengguna
+Pengaturan	Identitas Sekolah, Template Dokumen, Logo, Kop Rapor
+3. KETUA YAYASAN
+Kelompok Menu	Menu
+Beranda	Dashboard Eksekutif, Notifikasi, Kalender Kegiatan
+Akademik	Monitoring Akademik, Monitoring Keterlaksanaan Kurikulum
+Penilaian	Monitoring Hasil Belajar, Monitoring Kelulusan
+Siswa	Monitoring Jumlah Siswa, Prestasi, Pelanggaran, Risiko Dropout
+Administrasi	Monitoring SDM, Approval Strategis, Dokumen Yayasan, Audit Ringkas
+Keuangan	Monitoring Pemasukan, Pengeluaran, Tunggakan, Cashflow Ringkas
+Komunikasi	Pengumuman Yayasan
+Laporan	Laporan Strategis Bulanan, Semesteran, Tahunan
+Pengaturan	Kebijakan Yayasan, Preferensi Tampilan Dashboard
+4. KEPALA SEKOLAH
+Kelompok Menu	Menu
+Beranda	Dashboard Kepala Sekolah, Notifikasi, Kalender Sekolah
+Akademik	Monitoring Pembelajaran, Monitoring Guru, Kurikulum & Jadwal, Absensi Sekolah
+Penilaian	Monitoring Nilai, Validasi Nilai Akhir, Rapor, Kelulusan
+Siswa	Monitoring Siswa, BK & Kesiswaan, Prestasi, Pelanggaran
+Administrasi	Approval Program, Dokumen Sekolah, Monitoring SDM
+Keuangan	Keuangan Ringkas, Monitoring Pembayaran Siswa
+Komunikasi	Pengumuman Sekolah, Pesan Internal
+Laporan	Laporan Akademik, Laporan Guru, Laporan Siswa, Laporan Disiplin, Laporan Keuangan Ringkas
+Pengaturan	Profil Sekolah, Preferensi Kepala Sekolah
+5. GURU (UMUM)
+Kelompok Menu	Menu
+Beranda	Dashboard Guru, Notifikasi, Kalender Mengajar
+Akademik	Kelas Saya, Mata Pelajaran Saya, Materi Pembelajaran, Tugas, Quiz/Ujian, Jurnal Mengajar, Absensi Kelas
+Penilaian	Penilaian Tugas, Nilai Ujian, Nilai Praktik, Remedial
+Siswa	Daftar Siswa Kelas Ajar, Portofolio Siswa, Catatan Siswa
+Administrasi	Dokumen Ajar
+Keuangan	-
+Komunikasi	Forum Diskusi, Pesan, Pengumuman Kelas
+Laporan	Laporan Kelas, Rekap Nilai, Rekap Kehadiran
+Pengaturan	Profil Akun, Preferensi Mengajar
+6. GURU SUBROLE: MATA PELAJARAN
+Kelompok Menu	Menu
+Beranda	Dashboard Mapel, Notifikasi
+Akademik	Kelas Ajar, Materi, Tugas & Proyek, Quiz/Ujian, Absensi, Jurnal Mengajar, Capaian Pembelajaran
+Penilaian	Penilaian Pengetahuan, Keterampilan, Sikap, Remedial & Pengayaan
+Siswa	Daftar Siswa, Portofolio Siswa, Progress Belajar
+Administrasi	Dokumen Perangkat Ajar
+Keuangan	-
+Komunikasi	Forum Materi, Pesan ke Siswa
+Laporan	Rekap Nilai Mapel, Rekap Ketuntasan, Rekap Kehadiran
+Pengaturan	Profil, Preferensi Kelas
+7. GURU SUBROLE: WALI KELAS
+Kelompok Menu	Menu
+Beranda	Dashboard Wali Kelas, Notifikasi, Kalender Kelas
+Akademik	Data Kelas, Jadwal Kelas, Monitoring Pembelajaran Siswa
+Penilaian	Ringkasan Nilai Semua Mapel, Review Rapor
+Siswa	Data Siswa Kelas, Absensi Harian, Perilaku & Catatan, Kasus Siswa, Komunikasi Orang Tua
+Administrasi	Persetujuan Administratif, Arsip Kelas
+Keuangan	Ringkasan Tagihan Siswa Kelas
+Komunikasi	Pengumuman Kelas, Pesan ke Orang Tua, Pesan ke Siswa
+Laporan	Rekap Kelas, Rekap Absensi, Rekap Perilaku, Rekap Nilai Kelas
+Pengaturan	Profil, Preferensi Wali Kelas
+8. GURU SUBROLE: KURIKULUM
+Kelompok Menu	Menu
+Beranda	Dashboard Kurikulum, Notifikasi, Kalender Akademik
+Akademik	Struktur Kurikulum, Jadwal Pelajaran, Beban Mengajar, Kalender Akademik, Monitoring Jurnal Mengajar, Monitoring Materi
+Penilaian	Monitoring Penilaian, Ujian Akademik, Rapor & Kelulusan
+Siswa	Monitoring Distribusi Kelas dan Peserta Didik
+Administrasi	Dokumen Kurikulum, Approval Akademik
+Keuangan	-
+Komunikasi	Pengumuman Akademik, Pesan ke Guru
+Laporan	Laporan Kurikulum, Laporan Keterlaksanaan Pembelajaran, Evaluasi Akademik
+Pengaturan	Pengaturan Format Akademik, Aturan Penilaian
+9. GURU SUBROLE: KESISWAAN
+Kelompok Menu	Menu
+Beranda	Dashboard Kesiswaan, Notifikasi, Kalender Kegiatan Siswa
+Akademik	Data Ekstrakurikuler, Agenda Kegiatan
+Penilaian	Penilaian Sikap / Pembinaan
+Siswa	Data Kesiswaan, Tata Tertib, Pelanggaran Siswa, Prestasi Siswa, Kegiatan Siswa, Perizinan, Pembinaan
+Administrasi	Dokumen Kesiswaan, Approval Kegiatan
+Keuangan	Anggaran Kegiatan Ringkas
+Komunikasi	Pengumuman Kesiswaan, Komunikasi Orang Tua
+Laporan	Laporan Pelanggaran, Prestasi, Aktivitas Kesiswaan
+Pengaturan	Pengaturan Tata Tertib, Kategori Pelanggaran
+10. SISWA
+Kelompok Menu	Menu
+Beranda	Dashboard Siswa, Notifikasi, Kalender Belajar
+Akademik	Kelas Saya, Mata Pelajaran, Materi Belajar, Tugas Saya, Quiz/Ujian, Jadwal Pelajaran
+Penilaian	Nilai Tugas, Nilai Ujian, Nilai Praktik, Rapor
+Siswa	Absensi, Portofolio, BK/Konseling
+Administrasi	Dokumen Siswa, Sertifikat
+Keuangan	Tagihan, Status Pembayaran, Riwayat Pembayaran
+Komunikasi	Forum Diskusi, Pesan, Pengumuman
+Laporan	Progress Belajar, Rekap Kehadiran, Ringkasan Nilai
+Pengaturan	Profil Akun, Ganti Password, Preferensi
+11. BK
+Kelompok Menu	Menu
+Beranda	Dashboard BK, Notifikasi, Kalender Konseling
+Akademik	Monitoring Nilai, Monitoring Kehadiran
+Penilaian	Monitoring Risiko Akademik dan Perilaku
+Siswa	Data Siswa, Kasus & Pelanggaran, Konseling Individu, Konseling Kelompok, Rujukan Wali Kelas/Kesiswaan, Catatan Perkembangan
+Administrasi	Program BK, Dokumen BK
+Keuangan	-
+Komunikasi	Komunikasi Orang Tua, Pesan Internal
+Laporan	Laporan BK, Rekap Kasus, Rekap Intervensi
+Pengaturan	Profil BK, Pengaturan Kategori Layanan
+12. KEUANGAN
+Kelompok Menu	Menu
+Beranda	Dashboard Keuangan, Notifikasi, Kalender Pembayaran
+Akademik	Data Kelas untuk Rekap Pembayaran
+Penilaian	-
+Siswa	Data Siswa Terkait Tagihan, Rekap per Kelas
+Administrasi	Master Biaya, Dokumen Keuangan, Validasi Bukti Pembayaran
+Keuangan	Tagihan Siswa, Pembayaran, Tunggakan, Cicilan/Keringanan, Bukti Pembayaran, Integrasi Payment
+Komunikasi	Notifikasi Tagihan, Pesan ke Orang Tua / Siswa
+Laporan	Laporan Harian, Bulanan, Per Kelas, Per Siswa, Rekap Pemasukan
+Pengaturan	Pengaturan Jenis Biaya, Format Kwitansi, Payment Settings
